@@ -130,7 +130,7 @@ export const AsyncPagination: FC = props => {
             <Center mb="15px">Карточки, подгружаемые с пагинацией</Center>
             <Center>
                 <Pagination
-                    style={{color: 'inherit'}}
+                    style={{color: 'inherit', margin: "30px 0 20px 0"}}
                     showQuickJumper
                     showSizeChanger={false}
                     defaultCurrent={2}
@@ -138,12 +138,12 @@ export const AsyncPagination: FC = props => {
                     onChange={onChange}
                 />
             </Center>
-            <SimpleGrid columns={3} spacing={10}>
+            <Flex flexWrap="wrap" ml="-20px">
                 {charData.map(char => (
                     <CharacterCard key={char.id} {...char} />
                 ))}
 
-            </SimpleGrid>
+            </Flex>
         </Box>
     )
 };

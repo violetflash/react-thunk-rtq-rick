@@ -13,11 +13,17 @@ import {
 } from '@chakra-ui/react';
 import {Link} from "react-router-dom";
 
+const responsiveWidth = ['calc(100%)', 'calc(100% / 2 - 20px)', 'calc(100% / 3 - 20px)', 'calc(100% / 4 - 20px)'];
 
 export const CharacterCard: FC<ICharacter> = (props) => {
     return (
-        <LinkBox as={Link} to={`/character/${props.id}`}>
-            <Flex p="20px" w="full" alignItems="center" justifyContent="center">
+        <LinkBox
+            as={Link}
+            width={responsiveWidth}
+            m="0 0 20px 20px"
+            to={`/character/${props.id}`}
+        >
+            <Flex alignItems="center" justifyContent="center">
                 <Box
                     bg={useColorModeValue('white', 'gray.800')}
                     maxW="sm"
