@@ -3,6 +3,7 @@ import {Box, Heading} from "@chakra-ui/react";
 import {AsyncOnScroll, AsyncPagination, PageContainer, TabsLayout} from "../components";
 import {tabTitles} from "../utils/constants";
 
+
 export const AsyncThunkMethod: FC = props => {
 
     return (
@@ -13,7 +14,7 @@ export const AsyncThunkMethod: FC = props => {
                         as="h2"
                         fontSize="2xl"
                         textAlign="center"
-                        py="10px"
+                        p="30px 0 10px"
                         color="inherit"
                     >
                         Загрузка элементов с Async thunk'ами

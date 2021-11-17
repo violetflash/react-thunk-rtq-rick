@@ -9,7 +9,7 @@ interface TabsLayoutProps {
 
 export const TabsLayout = ({titles, components}: TabsLayoutProps) => {
     return (
-        <Tabs py="20px">
+        <Tabs p="0 0 20px">
             <TabList>
                 {titles.map(title => <Tab key={title}>{title}</Tab>)}
             </TabList>

@@ -2,20 +2,18 @@ import React, {FC} from 'react';
 import {ICharacter} from "./types";
 import {
     Flex,
-    Circle,
     Box,
     Image,
     Badge,
     useColorModeValue,
     Text,
-    chakra,
-    Tooltip, LinkBox,
+    LinkBox,
 } from '@chakra-ui/react';
 import {Link} from "react-router-dom";
 
-const responsiveWidth = ['calc(100%)', 'calc(100% / 2 - 20px)', 'calc(100% / 3 - 20px)', 'calc(100% / 4 - 20px)'];
+export const responsiveWidth = ['calc(100%)', 'calc(100% / 2 - 20px)', 'calc(100% / 3 - 20px)', 'calc(100% / 4 - 20px)'];
 
-export const CharacterCard: FC<ICharacter> = (props) => {
+export const CharacterCard = (props: ICharacter) => {
     return (
         <LinkBox
             as={Link}
@@ -23,10 +21,24 @@ export const CharacterCard: FC<ICharacter> = (props) => {
             m="0 0 20px 20px"
             to={`/character/${props.id}`}
         >
-            <Flex alignItems="center" justifyContent="center">
+            <Flex
+                alignItems="center"
+                justifyContent="center"
+                position={"relative"}
+            >
+                <Badge
+                    position={"absolute"}
+                    bg="gray.100"
+                    color="black"
+                    sx={{top: "10px", left: "10px"}}
+                    zIndex={1}
+                >
+                    {props.id}
+                </Badge>
                 <Box
                     bg={useColorModeValue('white', 'gray.800')}
-                    maxW="sm"
+                    // maxW="sm"
+                    w="full"
                     borderWidth="1px"
                     rounded="lg"
                     shadow="lg"
@@ -36,15 +48,24 @@ export const CharacterCard: FC<ICharacter> = (props) => {
                         src={props.image}
                         alt={`Picture of ${props.name}`}
                         roundedTop="lg"
+                        height="300px"
+                        w="full"
+                        objectFit="cover"
+                        fallbackSrc="https://via.placeholder.com/300"
                     />
 
                     <Box p="6">
-                        <Box d="flex" alignItems="baseline">
-                            <Badge rounded="full" px="2" fontSize="0.8em" colorScheme="red">
+                        <Flex  justify="flex-end">
+                            <Badge
+                                rounded="full"
+                                px="2"
+                                fontSize="0.8em"
+                                colorScheme={props.status !== "Alive" ? "red" : "green"}
+                            >
                                 {props.status}
                             </Badge>
-                        </Box>
-                        <Flex mt="1" justifyContent="space-between" alignContent="center">
+                        </Flex>
+                        <Flex mt="1" justifyContent="baseline" alignContent="center">
                             <Text
                                 fontSize="2xl"
                                 fontWeight="bold"
@@ -54,19 +75,6 @@ export const CharacterCard: FC<ICharacter> = (props) => {
                                 isTruncated>
                                 {props.name}
                             </Text>
-                        </Flex>
-
-                        <Flex justifyContent="space-between" alignContent="center">
-                            <Tooltip
-                                label="Открыть карточку"
-                                bg="white"
-                                placement={'top'}
-                                color={'gray.800'}
-                                fontSize={'1.2em'}>
-                                <chakra.a href={'#'} display={'flex'}>
-                                    Открыть карточку
-                                </chakra.a>
-                            </Tooltip>
                         </Flex>
                     </Box>
                 </Box>

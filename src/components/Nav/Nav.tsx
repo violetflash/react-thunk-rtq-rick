@@ -12,7 +12,7 @@ export const Nav:FC = props => {
                 as={RouterLink}
                 to={route.path}
                 color={pathname === route.path ? "black" : 'inherit'}
-                p="2px 5px"
+                p="2px 10px"
                 borderRadius="4px"
                 bg={pathname === route.path ? "orange.200" : 'inherit'}
             >
