@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
-import {Box, Flex, Skeleton} from "@chakra-ui/react";
-import {responsiveWidth} from "../CharacterCard/CharacterCard";
+import {Flex, Skeleton} from "@chakra-ui/react";
+import {responsiveWidth} from "../../CharacterCard/CharacterCard";
 
 export const CardSkeleton:FC = () => {
     return (

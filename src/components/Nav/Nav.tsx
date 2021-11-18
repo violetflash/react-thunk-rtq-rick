@@ -6,6 +6,11 @@ import {routes} from "../AppRouter/routes";
 export const Nav:FC = props => {
     const {pathname} = useLocation();
     const links = routes.map(route => {
+
+        if (route.title === '') {
+            return undefined;
+        }
+
         return (
             <Link
                 key={route.id}

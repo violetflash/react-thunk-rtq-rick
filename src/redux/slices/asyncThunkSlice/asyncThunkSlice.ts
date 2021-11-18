@@ -2,35 +2,40 @@ import {createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
 import axios from "axios";
 import {ICharacter} from "../../../components/CharacterCard/types";
 
-interface IResponseResult {
-    results: ICharacter[]
+interface IResponseInfo {
+    count: number;
+    pages: number;
+    next: string;
+    prev: string;
+    current: number;
 }
 
-interface IResponseInfo {
-    info: {
-        count: number,
-        pages: number,
-        next: string,
-        prev: string
-    }
+interface IResponse {
+    results: ICharacter[];
+    info: IResponseInfo;
 }
+
 
 export const fetchCharactersPage =  createAsyncThunk(
     'asyncThunk/fetchCharacters',
     async (page: number = 1, thunkAPI) => {
         try {
-            const response = await axios.get<IResponseResult>("https://rickandmortyapi.com/api/character", {
+            const response = await axios.get<IResponse>("https://rickandmortyapi.com/api/character/", {
                 params: {
-                    _page: page
+                    page
                 }
             });
-            console.log(response.data.results);
-            return response.data.results;
+
+            return {
+                results: response.data.results,
+                info: { ...response.data.info, current: page }
+            };
         } catch (e: any) {
             return thunkAPI.rejectWithValue(e.message)
         }
     }
 );
+
 
 interface IState {
     info: IResponseInfo;
@@ -54,10 +59,11 @@ export const asyncThunkSlice = createSlice({
         [fetchCharactersPage.pending.type]: (state) => {
             state.isLoading = true;
         },
-        [fetchCharactersPage.fulfilled.type]: (state, action: PayloadAction<ICharacter[]>) => {
-            // state.isLoading = false;
+        [fetchCharactersPage.fulfilled.type]: (state, action: PayloadAction<IResponse>) => {
+            state.isLoading = false;
             state.error = null;
-            state.characters = action.payload;
+            state.characters = action.payload.results;
+            state.info = action.payload.info;
         },
         [fetchCharactersPage.rejected.type]: (state, action: PayloadAction<string>) => {
             state.isLoading = false;

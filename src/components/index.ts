@@ -7,4 +7,4 @@ export * from './AsyncPagination/AsyncPagination';
 export * from './AsyncOnScroll/AsyncOnScroll';
 export * from './TabsLayout/TabsLayout';
 export * from './CharacterCard/CharacterCard';
-export * from './CardSkeleton/CardSkeleton';
+export * from './skeletons';

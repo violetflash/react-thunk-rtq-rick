@@ -8,8 +8,17 @@ interface TabsLayoutProps {
 }
 
 export const TabsLayout = ({titles, components}: TabsLayoutProps) => {
+
+
+    const handleTabChange = (index: number) => {
+
+    };
+
     return (
-        <Tabs p="0 0 20px">
+        <Tabs
+            onChange={(index) => handleTabChange(index)}
+            p="0 0 20px"
+        >
             <TabList>
                 {titles.map(title => <Tab key={title}>{title}</Tab>)}
             </TabList>
