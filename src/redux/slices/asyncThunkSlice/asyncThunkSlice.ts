@@ -15,7 +15,6 @@ interface IResponse {
     info: IResponseInfo;
 }
 
-
 export const fetchCharactersPage =  createAsyncThunk(
     'asyncThunk/fetchCharacters',
     async (page: number = 1, thunkAPI) => {
@@ -36,9 +35,22 @@ export const fetchCharactersPage =  createAsyncThunk(
     }
 );
 
+export const fetchCharacterById =  createAsyncThunk(
+    'asyncThunk/fetchCharacterById',
+    async (id: number, thunkAPI) => {
+        try {
+            const response = await axios.get<ICharacter>(`https://rickandmortyapi.com/api/character/${id}`);
+
+            return response.data;
+        } catch (e: any) {
+            return thunkAPI.rejectWithValue(e.message)
+        }
+    }
+);
 
 interface IState {
     info: IResponseInfo;
+    char: ICharacter;
     characters: ICharacter[],
     isLoading: boolean;
     error: string | null;
@@ -46,6 +58,7 @@ interface IState {
 
 const initialState: IState = {
     info: {} as IResponseInfo,
+    char: {} as ICharacter,
     characters: [],
     isLoading: false,
     error: null
@@ -68,6 +81,17 @@ export const asyncThunkSlice = createSlice({
         [fetchCharactersPage.rejected.type]: (state, action: PayloadAction<string>) => {
             state.isLoading = false;
             state.error = action.payload;
-        }
+        },
+        [fetchCharacterById.pending.type]: (state) => {
+            state.isLoading = true;
+        },
+        [fetchCharacterById.fulfilled.type]: (state, action: PayloadAction<ICharacter>) => {
+            state.isLoading = false;
+            state.char = action.payload;
+        },
+        [fetchCharacterById.rejected.type]: (state, action: PayloadAction<string>) => {
+            state.isLoading = false;
+            state.error = action.payload;
+        },
     }
 });

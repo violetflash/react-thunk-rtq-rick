@@ -4,22 +4,26 @@ import {CharacterCard, CardSkeleton, PaginationSkeleton} from "../../components"
 import {useAppDispatch, useTypedSelector} from "../../utils/hooks/redux-hooks";
 import {fetchCharactersPage} from "../../redux";
 import {Pagination} from "antd";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
 
-export const AsyncPagination: FC = props => {
+export const AsyncPagination: FC = () => {
+    let [searchParams] = useSearchParams();
+    const page = searchParams.get('page');
     const navigate = useNavigate();
     const {pathname} = useLocation();
     const dispatch = useAppDispatch();
     const [isLessThan768] = useMediaQuery("(max-width: 768px)")
     const {characters, isLoading, error, info} = useTypedSelector(state => state.asyncThunk);
 
+    const initialPage = page ? +page : 1;
+
     useEffect(() => {
-        dispatch(fetchCharactersPage(1));
-    }, [dispatch])
+        dispatch(fetchCharactersPage(initialPage));
+    }, [dispatch, initialPage])
 
     const onChange = (pageNumber: number) => {
         dispatch(fetchCharactersPage(pageNumber));
-        navigate(`${pathname}?page_${pageNumber}`, { replace: true })
+        navigate(`${pathname}?page=${pageNumber}`, { replace: true })
     }
 
     if (error) {
@@ -39,7 +43,8 @@ export const AsyncPagination: FC = props => {
                     size={isLessThan768 ? "small" : "default"}
                     showQuickJumper
                     showSizeChanger={false}
-                    defaultCurrent={1}
+                    current={initialPage}
+                    defaultCurrent={initialPage}
                     total={info.pages * 10}
                     onChange={onChange}
                 /> : <PaginationSkeleton/>}
@@ -51,7 +56,6 @@ export const AsyncPagination: FC = props => {
                 {isLoading && Array.from(Array(8).keys()).map(num => (
                     <CardSkeleton key={num}/>
                 ))}
-
             </Flex>
         </Box>
     )

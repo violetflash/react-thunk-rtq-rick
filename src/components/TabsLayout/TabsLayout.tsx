@@ -1,4 +1,5 @@
 import React from 'react';
+import {useLocation, useNavigate} from 'react-router-dom';
 import {Tab, TabList, TabPanel, TabPanels, Tabs} from "@chakra-ui/react";
 
 
@@ -8,10 +9,11 @@ interface TabsLayoutProps {
 }
 
 export const TabsLayout = ({titles, components}: TabsLayoutProps) => {
-
+    const {pathname} = useLocation();
+    const navigate = useNavigate();
 
     const handleTabChange = (index: number) => {
-
+        navigate(pathname, {replace: true});
     };
 
     return (
