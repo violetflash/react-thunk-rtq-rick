@@ -1,6 +1,6 @@
 import React, {FC, useEffect} from 'react';
 import {Box, Center, Flex, Heading, useMediaQuery} from "@chakra-ui/react";
-import {CharacterCard, CardSkeleton, PaginationSkeleton} from "../../components";
+import {CharacterCard, CardSkeleton, PaginationSkeleton, ScrollToTop} from "../../components";
 import {useAppDispatch, useTypedSelector} from "../../utils/hooks/redux-hooks";
 import {fetchCharactersPage} from "../../redux";
 import {Pagination} from "antd";
@@ -57,6 +57,7 @@ export const AsyncPagination: FC = () => {
                     <CardSkeleton key={num}/>
                 ))}
             </Flex>
+            <ScrollToTop/>
         </Box>
     )
 };

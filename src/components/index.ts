@@ -9,3 +9,4 @@ export * from './TabsLayout/TabsLayout';
 export * from './CharacterCard/CharacterCard';
 export * from './skeletons';
 export * from './CharacterFull/CharacterFull';
+export * from './ScrollToTop/ScrollToTop';
