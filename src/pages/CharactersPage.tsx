@@ -1,18 +1,17 @@
 import React, {useEffect} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import {CharacterFull, PageContainer} from "../components";
-import {Box, Button, Center, Flex, Heading, VStack} from "@chakra-ui/react";
+import {CharacterDescrSkeleton, CharacterFull, PageContainer} from "../components";
+import {Box, Button, Center, Flex, Heading} from "@chakra-ui/react";
 import {ArrowBackIcon} from '@chakra-ui/icons';
 import {fetchCharacterById} from "../redux";
 import {useAppDispatch, useTypedSelector} from "../utils/hooks/redux-hooks";
-
 
 
 export const CharactersPage = () => {
     const navigate = useNavigate();
     const params = useParams();
     const dispatch = useAppDispatch();
-    const {char, isLoading} = useTypedSelector(state => state.asyncThunk);
+    const {char, charIsLoading} = useTypedSelector(state => state.asyncThunk);
 
     const handleGoBack = () => {
         navigate(-1);
@@ -35,20 +34,19 @@ export const CharactersPage = () => {
                     >
                         Назад
                     </Button>
-                    {!isLoading &&
-                        <Flex direction="column">
-                          <Heading
-                            m="20px 0 30px"
-                            textAlign="center"
-                            color="inherit"
-                          >
-                            Страница персонажа {char.name}
-                          </Heading>
-                          <Center>
-                            <CharacterFull {...char}/>
-                          </Center>
-                        </Flex>
-                    }
+                    <Flex direction="column">
+                      <Heading
+                        m="20px 0 30px"
+                        textAlign="center"
+                        color="inherit"
+                      >
+                          {char.name}
+                      </Heading>
+                      <Center>
+                          {charIsLoading && <CharacterDescrSkeleton/>}
+                          {!charIsLoading && Object.keys(char).length > 0 && <CharacterFull {...char}/>}
+                      </Center>
+                    </Flex>
                 </Box>
             </PageContainer>
         </Box>

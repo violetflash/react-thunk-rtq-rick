@@ -53,6 +53,7 @@ interface IState {
     char: ICharacter;
     characters: ICharacter[],
     isLoading: boolean;
+    charIsLoading: boolean,
     error: string | null;
 }
 
@@ -61,6 +62,7 @@ const initialState: IState = {
     char: {} as ICharacter,
     characters: [],
     isLoading: false,
+    charIsLoading: false,
     error: null
 };
 
@@ -83,10 +85,10 @@ export const asyncThunkSlice = createSlice({
             state.error = action.payload;
         },
         [fetchCharacterById.pending.type]: (state) => {
-            state.isLoading = true;
+            state.charIsLoading = true;
         },
         [fetchCharacterById.fulfilled.type]: (state, action: PayloadAction<ICharacter>) => {
-            state.isLoading = false;
+            state.charIsLoading = false;
             state.char = action.payload;
         },
         [fetchCharacterById.rejected.type]: (state, action: PayloadAction<string>) => {

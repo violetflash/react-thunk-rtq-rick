@@ -1,72 +1,61 @@
 import React, {FC} from 'react';
-import {Badge, Box, Flex, FlexProps, Image, LinkBox, Text, useColorModeValue} from "@chakra-ui/react";
-import {Link} from "react-router-dom";
-import {responsiveWidth} from "../CharacterCard/CharacterCard";
+import {Badge, Box, BoxProps, Flex, FlexProps, Image, Text, useColorModeValue} from "@chakra-ui/react";
 import {motion} from 'framer-motion';
 import {ICharacter} from "../CharacterCard/types";
+import { FieldAndValueRow } from '../ui';
+
 
 const MotionFlex = motion<FlexProps>(Flex);
+const MotionBox = motion<BoxProps>(Box);
 
 export const CharacterFull: FC<ICharacter> = (props) => {
+    console.log(props.name)
     return (
         <MotionFlex
             initial={{opacity: 0}}
             animate={{opacity: 1}}
+            direction={["column", "column", "row", "row"]}
             alignItems="center"
-            justifyContent="center"
+            justify="center"
             position={"relative"}
-            width={responsiveWidth}
-            m="0 0 20px 20px"
+            width="full"
+            // shadow="lg"
+            rounded="lg"
         >
-            <Badge
-                position={"absolute"}
-                bg="gray.100"
-                color="black"
-                sx={{top: "10px", left: "10px"}}
-                zIndex={1}
-            >
-                {props.id}
-            </Badge>
-            <Box
+            <MotionBox
+                // initial={{translateX: "0"}}
+                // animate={{ translateX: ["0", "0", "-100px"] }}
+                // transition={{delay: 0.2}}
                 bg={useColorModeValue('white', 'gray.800')}
-                // maxW="sm"
-                w="full"
-                borderWidth="1px"
-                rounded="lg"
-                shadow="lg"
+                w="300px"
                 position="relative">
                 <Image
                     src={props.image}
                     alt={`Picture of ${props.name}`}
-                    roundedTop="lg"
+                    rounded="lg"
                     height="300px"
                     w="full"
                     objectFit="cover"
                     // fallbackSrc="https://via.placeholder.com/300"
                 />
-                <Box p="6">
-                    <Flex  justify="flex-end">
-                        <Badge
-                            rounded="full"
-                            px="2"
-                            fontSize="0.8em"
-                            colorScheme={props.status !== "Alive" ? "red" : "green"}
-                        >
-                            {props.status}
-                        </Badge>
-                    </Flex>
-                    <Flex mt="1" justifyContent="baseline" alignContent="center">
-                        <Text
-                            fontSize="2xl"
-                            fontWeight="bold"
-                            as="h4"
-                            color="inherit"
-                            lineHeight="tight"
-                            isTruncated>
-                            {props.name}
-                        </Text>
-                    </Flex>
-                </Box>
+            </MotionBox>
+            <Box
+                // flex="1"
+                p="15px"
+                ml="20px"
+            >
+                <Flex alignItems="center" mb="10px">
+                    <Text fontWeight="bold" fontSize="lg" mr="10px">Status:</Text>
+                    <Badge
+                        colorScheme={props.status !== "Alive" ? "red" : "green"}
+                    >
+                        {props.status}
+                    </Badge>
+                </Flex>
+                <FieldAndValueRow fieldName="Species" value={props.species}/>
+                <FieldAndValueRow fieldName="Gender" value={props.gender}/>
+                <FieldAndValueRow fieldName="From" value={props.origin.name}/>
+                <FieldAndValueRow fieldName="Location" value={props.location.name}/>
             </Box>
         </MotionFlex>
     )
