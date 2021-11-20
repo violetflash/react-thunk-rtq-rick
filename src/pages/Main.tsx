@@ -1,4 +1,4 @@
-import {Box, Heading, Text, VStack} from '@chakra-ui/react';
+import {Box, Heading, VStack} from '@chakra-ui/react';
 import React, {FC} from 'react';
 import {PageContainer} from "../components";
 import {FieldAndValueRow} from "../components/ui";

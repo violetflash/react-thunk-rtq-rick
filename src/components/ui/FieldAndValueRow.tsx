@@ -10,7 +10,7 @@ interface CardTextRowProps {
 export const FieldAndValueRow = ({ fieldName, value, responsive }: CardTextRowProps) => {
     return (
         <Flex
-            alignItems={responsive ? ["flex-start", "flex-start", "center", "center"] : "center"}
+            alignItems={responsive ? "flex-start" : "center"}
             mb="10px"
             direction={responsive ? ["column", "column", "row", "row"] : "row"}
         >

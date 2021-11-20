@@ -9,7 +9,7 @@ const MotionFlex = motion<FlexProps>(Flex);
 const MotionBox = motion<BoxProps>(Box);
 
 export const CharacterFull: FC<ICharacter> = (props) => {
-    console.log(props.name)
+
     return (
         <MotionFlex
             initial={{opacity: 0}}

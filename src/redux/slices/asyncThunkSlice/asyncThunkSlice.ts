@@ -48,12 +48,32 @@ export const fetchCharacterById =  createAsyncThunk(
     }
 );
 
+export const fetchCharPageOnScroll =  createAsyncThunk(
+    'asyncThunk/fetchCharPageOnScroll',
+    async (page: number = 1, thunkAPI) => {
+        try {
+            const response = await axios.get<IResponse>("https://rickandmortyapi.com/api/character/", {
+                params: {
+                    page
+                }
+            });
+            console.log(response.data.results);
+            return response.data.results;
+
+        } catch (e: any) {
+            return thunkAPI.rejectWithValue(e.message)
+        }
+    }
+);
+
 interface IState {
     info: IResponseInfo;
     char: ICharacter;
     characters: ICharacter[],
+    charactersOnScroll: ICharacter[],
     isLoading: boolean;
     charIsLoading: boolean,
+    isLoadingOnScroll: boolean,
     error: string | null;
 }
 
@@ -61,15 +81,21 @@ const initialState: IState = {
     info: {} as IResponseInfo,
     char: {} as ICharacter,
     characters: [],
+    charactersOnScroll: [],
     isLoading: false,
     charIsLoading: false,
+    isLoadingOnScroll: false,
     error: null
 };
 
 export const asyncThunkSlice = createSlice({
     name: 'asyncThunk',
     initialState,
-    reducers: {},
+    reducers: {
+        clearCharactersList: (state) => {
+            state.characters = [];
+        }
+    },
     extraReducers: {
         [fetchCharactersPage.pending.type]: (state) => {
             state.isLoading = true;
@@ -95,5 +121,20 @@ export const asyncThunkSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload;
         },
+        [fetchCharPageOnScroll.pending.type]: (state) => {
+            state.isLoadingOnScroll = true;
+        },
+        [fetchCharPageOnScroll.fulfilled.type]: (state, action: PayloadAction<ICharacter[]>) => {
+            console.log(state.charactersOnScroll);
+            state.isLoadingOnScroll = false;
+            // state.charactersOnScroll = [state.charactersOnScroll, ...action.payload];
+        },
+        [fetchCharPageOnScroll.rejected.type]: (state, action: PayloadAction<string>) => {
+            state.isLoadingOnScroll = false;
+            state.error = action.payload;
+        }
     }
 });
+
+export const {clearCharactersList} = asyncThunkSlice.actions;
+

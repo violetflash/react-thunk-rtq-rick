@@ -1,7 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import { ArrowUpIcon } from '@chakra-ui/icons';
-import { IconButton } from '@chakra-ui/react';
+import {IconButton, IconButtonProps} from '@chakra-ui/react';
+import {AnimatePresence, motion} from 'framer-motion';
 import { Portal } from '../ui';
+
+const MotionIconButton = motion<IconButtonProps>(IconButton)
 
 export const ScrollToTop = () => {
     const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -28,20 +31,25 @@ export const ScrollToTop = () => {
         return () => window.removeEventListener("scroll", toggleVisibility);
     }, []);
 
-    if (isVisible) {
-        return (
-            <Portal>
-                <IconButton
+
+    return (
+        <Portal>
+            <AnimatePresence>
+                {isVisible &&
+                <MotionIconButton
+                    key="button"
+                    initial={{x: 20, opacity: 0}}
+                    animate={{x: 0, opacity: 1}}
+                    transition={{type: "spring", ease: "easeOut"}}
+                    exit={{x: 20, opacity: 0}}
                     sx={{position: "fixed", bottom: "40px", right: "40px"}}
                     aria-label="scroll to the top"
                     icon={<ArrowUpIcon/>}
                     colorScheme="blue"
                     rounded="full"
                     onClick={scrollToTop}
-                />
-            </Portal>
-        )
-    }
-
-    return null;
+                />}
+            </AnimatePresence>
+        </Portal>
+    )
 };

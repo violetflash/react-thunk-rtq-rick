@@ -9,6 +9,7 @@ import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
 export const AsyncPagination: FC = () => {
     let [searchParams] = useSearchParams();
     const page = searchParams.get('page');
+    const tab = searchParams.get('tab');
     const navigate = useNavigate();
     const {pathname} = useLocation();
     const dispatch = useAppDispatch();
@@ -16,6 +17,8 @@ export const AsyncPagination: FC = () => {
     const {characters, isLoading, error, info} = useTypedSelector(state => state.asyncThunk);
 
     const initialPage = page ? +page : 1;
+    const activeTab = tab ? +tab : 0;
+
 
     useEffect(() => {
         dispatch(fetchCharactersPage(initialPage));
@@ -23,7 +26,7 @@ export const AsyncPagination: FC = () => {
 
     const onChange = (pageNumber: number) => {
         dispatch(fetchCharactersPage(pageNumber));
-        navigate(`${pathname}?page=${pageNumber}`, { replace: true })
+        navigate(`${pathname}?tab=${activeTab}&page=${pageNumber}`, { replace: true })
     }
 
     if (error) {
