@@ -127,7 +127,7 @@ export const asyncThunkSlice = createSlice({
         [fetchCharPageOnScroll.fulfilled.type]: (state, action: PayloadAction<ICharacter[]>) => {
             console.log(state.charactersOnScroll);
             state.isLoadingOnScroll = false;
-            // state.charactersOnScroll = [state.charactersOnScroll, ...action.payload];
+            state.charactersOnScroll = [...state.charactersOnScroll, ...action.payload];
         },
         [fetchCharPageOnScroll.rejected.type]: (state, action: PayloadAction<string>) => {
             state.isLoadingOnScroll = false;
