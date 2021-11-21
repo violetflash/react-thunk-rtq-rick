@@ -14,7 +14,8 @@ export const AsyncPagination: FC = () => {
     const {pathname} = useLocation();
     const dispatch = useAppDispatch();
     const [isLessThan768] = useMediaQuery("(max-width: 768px)")
-    const {characters, isLoading, error, info} = useTypedSelector(state => state.asyncThunk);
+    const {items, isLoading, error, info} = useTypedSelector(state => state.asyncThunk.pagination);
+
 
     const initialPage = page ? +page : 1;
     const activeTab = tab ? +tab : 0;
@@ -23,6 +24,7 @@ export const AsyncPagination: FC = () => {
     useEffect(() => {
         dispatch(fetchCharactersPage(initialPage));
     }, [dispatch, initialPage])
+
 
     const onChange = (pageNumber: number) => {
         dispatch(fetchCharactersPage(pageNumber));
@@ -53,7 +55,7 @@ export const AsyncPagination: FC = () => {
                 /> : <PaginationSkeleton/>}
             </Center>
             <Flex flexWrap="wrap" ml="-20px">
-                {!isLoading && characters && characters.map(char => (
+                {!isLoading && items && items.map(char => (
                     <CharacterCard key={char.id} {...char} />
                 ))}
                 {isLoading && Array.from(Array(8).keys()).map(num => (

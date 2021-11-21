@@ -11,7 +11,7 @@ export const CharactersPage = () => {
     const navigate = useNavigate();
     const params = useParams();
     const dispatch = useAppDispatch();
-    const {char, charIsLoading} = useTypedSelector(state => state.asyncThunk);
+    const {item, isLoading, error} = useTypedSelector(state => state.asyncThunk.chosenChar);
 
     const handleGoBack = () => {
         navigate(-1);
@@ -40,11 +40,11 @@ export const CharactersPage = () => {
                         textAlign="center"
                         color="inherit"
                       >
-                          {char.name}
+                          {item.name}
                       </Heading>
                       <Center>
-                          {charIsLoading && <CharacterDescrSkeleton/>}
-                          {!charIsLoading && Object.keys(char).length > 0 && <CharacterFull {...char}/>}
+                          {isLoading && <CharacterDescrSkeleton/>}
+                          {!isLoading && Object.keys(item).length > 0 && <CharacterFull {...item}/>}
                       </Center>
                     </Flex>
                 </Box>

@@ -1,6 +1,5 @@
 import React from 'react';
 import {motion} from 'framer-motion';
-import {ICharacter} from "./types";
 import {
     Flex, FlexProps,
     Box,
@@ -11,6 +10,7 @@ import {
     LinkBox,
 } from '@chakra-ui/react';
 import {Link} from "react-router-dom";
+import {ICharacter} from "../../models";
 
 
 const MotionFlex = motion<FlexProps>(Flex);

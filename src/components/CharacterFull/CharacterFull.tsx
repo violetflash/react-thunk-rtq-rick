@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 import {Badge, Box, BoxProps, Flex, FlexProps, Image, Text, useColorModeValue} from "@chakra-ui/react";
 import {motion} from 'framer-motion';
-import {ICharacter} from "../CharacterCard/types";
 import { FieldAndValueRow } from '../ui';
+import { ICharacter } from '../../models';
 
 
 const MotionFlex = motion<FlexProps>(Flex);
