@@ -1,9 +1,9 @@
-import {Box, Heading, VStack} from '@chakra-ui/react';
+import {Box, Flex, Heading, List, ListItem, Text, VStack} from '@chakra-ui/react';
 import React, {FC} from 'react';
 import {PageContainer} from "../components";
 import {FieldAndValueRow} from "../components/ui";
 
-export const Main:FC = props => {
+export const Main:FC = () => {
     return (
         <Box className="info-page">
             <PageContainer>
@@ -18,10 +18,26 @@ export const Main:FC = props => {
                                           fieldName="Стек"
                                           value="React, Typescript, Redux Toolkit, React-router-dom v6, Chakra Ui, Framer motion"
                         />
-                        <FieldAndValueRow responsive
-                                          fieldName="Цель"
-                                          value="1) Отработка навыков использования различных методов получения асинхронных данных: rtk-createAsyncThunk и rtk-Query. 2) Использование новых механизмов React-router-dom v6, такие как Outlet, useNavigate, useLocation, useSearchParams - реализация подгрузки данных (пагинация, по скроллу) на их основе."
-                        />
+                        <Flex
+                            alignItems="flex-start"
+                            mb="10px"
+                            direction={["column", "column", "row", "row"]}
+                        >
+                            <Text fontWeight="bold" fontSize="lg" mr="10px">Цель:</Text>
+
+                            <List fontSize="md">
+                                <ListItem>
+                                    1) Отработка навыков использования различных методов получения асинхронных данных: rtk-createAsyncThunk и rtk-Query.
+                                </ListItem>
+                                <ListItem>
+                                    2) Использование новых механизмов React-router-dom v6, такие как Outlet, useNavigate, useLocation, useSearchParams - реализация подгрузки данных (пагинация, по скроллу) на их основе.
+                                </ListItem>
+                                <ListItem>
+                                    3) Реализация подгрузки данных по скроллу c использованием Intersection API
+                                </ListItem>
+                            </List>
+                        </Flex>
+
                         <FieldAndValueRow responsive
                                           fieldName="Статус"
                                           value="В процессе"

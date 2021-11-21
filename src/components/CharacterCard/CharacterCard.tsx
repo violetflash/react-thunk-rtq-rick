@@ -16,16 +16,25 @@ import {ICharacter} from "../../models";
 const MotionFlex = motion<FlexProps>(Flex);
 export const responsiveWidth = ['calc(100%)', 'calc(100% / 2 - 20px)', 'calc(100% / 3 - 20px)', 'calc(100% / 4 - 20px)'];
 
+const item = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1
+    }
+};
+
 export const CharacterCard = (props: ICharacter) => {
     return (
         <MotionFlex
-            initial={{opacity: 0}}
-            animate={{opacity: 1}}
+            // initial={{opacity: 0}}
+            // animate={{opacity: 1}}
             alignItems="center"
             justifyContent="center"
             position={"relative"}
+            variants={item}
             width={responsiveWidth}
             m="0 0 20px 20px"
+
         >
             <Badge
                 position={"absolute"}
@@ -43,7 +52,9 @@ export const CharacterCard = (props: ICharacter) => {
                 borderWidth="1px"
                 rounded="lg"
                 shadow="lg"
-                position="relative">
+                position="relative"
+
+            >
                 <LinkBox
                     as={Link}
                     to={`/character/${props.id}`}
@@ -51,6 +62,7 @@ export const CharacterCard = (props: ICharacter) => {
                     <Image
                         src={props.image}
                         alt={`Picture of ${props.name}`}
+                        whileHover={{scale: 1.3}}
                         roundedTop="lg"
                         height="300px"
                         w="full"

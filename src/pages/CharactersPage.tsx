@@ -11,7 +11,7 @@ export const CharactersPage = () => {
     const navigate = useNavigate();
     const params = useParams();
     const dispatch = useAppDispatch();
-    const {item, isLoading, error} = useTypedSelector(state => state.asyncThunk.chosenChar);
+    const {item, isLoading} = useTypedSelector(state => state.asyncThunk.chosenChar);
 
     const handleGoBack = () => {
         navigate(-1);

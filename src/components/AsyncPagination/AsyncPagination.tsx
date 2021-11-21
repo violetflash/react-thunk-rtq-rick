@@ -1,10 +1,28 @@
 import React, {FC, useEffect} from 'react';
-import {Box, Center, Flex, Heading, useMediaQuery} from "@chakra-ui/react";
+import {Box, Center, Flex, FlexProps, Heading, useMediaQuery} from "@chakra-ui/react";
 import {CharacterCard, CardSkeleton, PaginationSkeleton, ScrollToTop} from "../../components";
 import {useAppDispatch, useTypedSelector} from "../../utils/hooks/redux-hooks";
 import {fetchCharactersPage} from "../../redux";
 import {Pagination} from "antd";
 import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
+import {motion} from 'framer-motion';
+
+const MotionFlex = motion<FlexProps>(Flex);
+
+const container = {
+    hidden: { opacity: 1},
+    visible: {
+        opacity: 1,
+        transition: {
+            ease: "easeOut",
+            delayChildren: 0.3,
+            staggerChildren: 0.2
+        }
+    }
+};
+
+
+
 
 export const AsyncPagination: FC = () => {
     let [searchParams] = useSearchParams();
@@ -41,7 +59,6 @@ export const AsyncPagination: FC = () => {
 
     return (
         <Box>
-            <Center mb="15px">Карточки, подгружаемые с пагинацией</Center>
             <Center>
                 {info.pages ? <Pagination
                     style={{color: 'inherit', margin: "30px 0 20px 0"}}
@@ -54,14 +71,20 @@ export const AsyncPagination: FC = () => {
                     onChange={onChange}
                 /> : <PaginationSkeleton/>}
             </Center>
-            <Flex flexWrap="wrap" ml="-20px">
+            <MotionFlex
+                variants={container}
+                initial="hidden"
+                animate="visible"
+                flexWrap="wrap"
+                ml="-20px"
+            >
                 {!isLoading && items && items.map(char => (
                     <CharacterCard key={char.id} {...char} />
                 ))}
                 {isLoading && Array.from(Array(8).keys()).map(num => (
                     <CardSkeleton key={num}/>
                 ))}
-            </Flex>
+            </MotionFlex>
             <ScrollToTop/>
         </Box>
     )

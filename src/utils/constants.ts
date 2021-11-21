@@ -1,4 +1,4 @@
 export const tabTitles = [
-    'Pagination',
-    'onScroll loading'
+    'Пагинация',
+    'Подгрузка по скроллу'
 ];
