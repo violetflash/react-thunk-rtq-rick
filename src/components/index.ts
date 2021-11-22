@@ -10,3 +10,8 @@ export * from './CharacterCard/CharacterCard';
 export * from './skeletons';
 export * from './CharacterFull/CharacterFull';
 export * from './ScrollToTop/ScrollToTop';
+export * from './QueryOnScroll/QueryOnScroll';
+export * from './QueryPagination/QueryPagination';
+export * from './Cards/Cards';
+export * from './PaginationElement/PaginationElement';
+export * from './PaginationPage/PaginationPage';

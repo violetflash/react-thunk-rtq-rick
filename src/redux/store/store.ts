@@ -1,16 +1,17 @@
 import {configureStore} from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import {asyncThunkSlice, apiSlice} from "../slices";
+import { apiService } from '../services';
+import {asyncThunkSlice} from "../slices";
 
 export const store = configureStore({
     reducer: {
         [asyncThunkSlice.name]: asyncThunkSlice.reducer,
-        [apiSlice.reducerPath]: apiSlice.reducer
+        [apiService.reducerPath]: apiService.reducer
     },
     // Adding the api middleware enables caching, invalidation, polling,
     // and other useful features of `rtk-query`.
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(apiSlice.middleware),
+        getDefaultMiddleware().concat(apiService.middleware),
 });
 
 setupListeners(store.dispatch);

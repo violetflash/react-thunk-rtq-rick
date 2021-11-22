@@ -1,7 +1,7 @@
 import {createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
 import axios from "axios";
 import { ICharacter } from '../../../models';
-import { IResponse, IResponseInfo } from '../types';
+import {IResponse, IResponseInfo, IState} from '../../types';
 
 export const fetchCharactersPage =  createAsyncThunk(
     'asyncThunk/fetchCharacters',
@@ -57,25 +57,7 @@ export const fetchCharPageOnScroll =  createAsyncThunk(
     }
 );
 
-interface Base {
-    isLoading: boolean;
-    error: string | null;
-}
 
-interface IChar extends Base {
-    item: ICharacter;
-}
-
-interface IStateObject extends Base {
-    items: ICharacter[],
-    info: IResponseInfo;
-}
-
-interface IState {
-    chosenChar: IChar;
-    pagination: IStateObject;
-    onScroll: IStateObject;
-}
 
 const initialState: IState = {
     chosenChar: {
