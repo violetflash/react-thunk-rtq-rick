@@ -62,7 +62,6 @@ export const CharacterCard = (props: ICharacter) => {
                     <Image
                         src={props.image}
                         alt={`Picture of ${props.name}`}
-                        whileHover={{scale: 1.3}}
                         roundedTop="lg"
                         height="300px"
                         w="full"

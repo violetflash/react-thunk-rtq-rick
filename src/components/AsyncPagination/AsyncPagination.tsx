@@ -1,11 +1,12 @@
 import React, {FC, useEffect} from 'react';
-import {Box, Center, Flex, FlexProps, Heading, useMediaQuery} from "@chakra-ui/react";
+import {Box, Center, Flex, FlexProps, Heading} from "@chakra-ui/react";
 import {CharacterCard, CardSkeleton, PaginationSkeleton, ScrollToTop} from "../../components";
 import {useAppDispatch, useTypedSelector} from "../../utils/hooks/redux-hooks";
 import {fetchCharactersPage} from "../../redux";
 import {Pagination} from "antd";
 import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
 import {motion} from 'framer-motion';
+import './style.css';
 
 const MotionFlex = motion<FlexProps>(Flex);
 
@@ -21,9 +22,6 @@ const container = {
     }
 };
 
-
-
-
 export const AsyncPagination: FC = () => {
     let [searchParams] = useSearchParams();
     const page = searchParams.get('page');
@@ -31,7 +29,7 @@ export const AsyncPagination: FC = () => {
     const navigate = useNavigate();
     const {pathname} = useLocation();
     const dispatch = useAppDispatch();
-    const [isLessThan768] = useMediaQuery("(max-width: 768px)")
+    // const [isLessThan768] = useMediaQuery("(max-width: 768px)")
     const {items, isLoading, error, info} = useTypedSelector(state => state.asyncThunk.pagination);
 
 
@@ -62,8 +60,9 @@ export const AsyncPagination: FC = () => {
             <Center>
                 {info.pages ? <Pagination
                     style={{color: 'inherit', margin: "30px 0 20px 0"}}
-                    size={isLessThan768 ? "small" : "default"}
+                    // size={isLessThan768 ? "small" : "default"}
                     showQuickJumper
+                    responsive
                     showSizeChanger={false}
                     current={initialPage}
                     defaultCurrent={initialPage}

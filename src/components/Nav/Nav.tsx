@@ -27,7 +27,7 @@ export const Nav:FC = props => {
     })
 
     return (
-        <HStack as="nav" spacing="40px">
+        <HStack as="nav" spacing={["10px","10px","40px","40px"]}>
             {links}
         </HStack>
     )

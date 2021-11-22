@@ -1,5 +1,6 @@
-import {Box, Flex, Heading, List, ListItem, Text, VStack} from '@chakra-ui/react';
+import {Badge, Box, Flex, Heading, Link, List, ListItem, Text, VStack} from '@chakra-ui/react';
 import React, {FC} from 'react';
+import { ExternalLinkIcon } from '@chakra-ui/icons'
 import {PageContainer} from "../components";
 import {FieldAndValueRow} from "../components/ui";
 
@@ -8,12 +9,19 @@ export const Main:FC = () => {
         <Box className="info-page">
             <PageContainer>
                 <Box className="info-content">
-                    <Heading textAlign="center" mt="20px">О проекте</Heading>
+                    <Heading textAlign="center" mt="20px" color="inherit">О проекте</Heading>
                     <VStack alignItems="flex-start" mt="20px">
-                        <FieldAndValueRow responsive
-                            fieldName="Тренировочный проект по работе с API"
-                            value="https://rickandmortyapi.com/"
-                        />
+
+                        <Flex
+                            alignItems="center"
+                            mb="10px"
+                            direction={["column", "column", "row", "row"]}
+                        >
+                            <Text fontWeight="bold" fontSize="lg" mr="10px">Проект по работе с API:</Text>
+                            <Link href="https://rickandmortyapi.com" p="2px 10px" fontSize="md" isExternal>
+                                https://rickandmortyapi.com <ExternalLinkIcon mx="2px" />
+                            </Link>
+                        </Flex>
                         <FieldAndValueRow responsive
                                           fieldName="Стек"
                                           value="React, Typescript, Redux Toolkit, React-router-dom v6, Chakra Ui, Framer motion"
@@ -38,10 +46,16 @@ export const Main:FC = () => {
                             </List>
                         </Flex>
 
-                        <FieldAndValueRow responsive
-                                          fieldName="Статус"
-                                          value="В процессе"
-                        />
+                        <Flex
+                            alignItems="center"
+                            mb="10px"
+                            direction={["column", "column", "row", "row"]}
+                        >
+                            <Text fontWeight="bold" fontSize="lg" mr="10px">Статус:</Text>
+                            <Badge colorScheme="red" p="2px 10px">Активный</Badge>
+                        </Flex>
+
+
                     </VStack>
                 </Box>
             </PageContainer>

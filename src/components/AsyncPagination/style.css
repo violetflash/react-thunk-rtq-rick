@@ -1,0 +1,26 @@
+.ant-pagination.mini .ant-pagination-item:not(.ant-pagination-item-active) a {
+  color: inherit;
+}
+
+.ant-pagination-jump-prev,
+.ant-pagination-jump-next {
+  color: inherit !important;
+
+}
+
+.ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-ellipsis,
+.ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-ellipsis {
+  color: inherit !important;
+}
+
+.ant-pagination-prev,
+.ant-pagination-next {
+
+  background-color: #fff;
+
+}
+
+.ant-pagination-prev button,
+.ant-pagination-next button {
+
+}
