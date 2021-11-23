@@ -22,10 +22,5 @@ export const AsyncOnScroll: FC = () => {
             items={items}
             isLoading={isLoading}
         />
-        // <Box>
-        //     <Cards isLoading={isLoading} items={items}/>
-        //     <div ref={loader}/>
-        //     <ScrollToTop/>
-        // </Box>
     )
 };

@@ -31,7 +31,7 @@ export const CharactersPage = () => {
                         onClick={handleGoBack}
                         leftIcon={<ArrowBackIcon/>}
                         variant="outline"
-                        colorScheme="teal"
+                        colorScheme="orange"
                     >
                         Назад
                     </Button>
