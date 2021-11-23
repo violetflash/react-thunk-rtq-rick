@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import {CharacterDescrSkeleton, CharacterFull, PageContainer} from "../components";
+import {CharacterDescrSkeleton, CharacterFull} from "../components";
 import {Box, Button, Center, Flex, Heading} from "@chakra-ui/react";
 import {ArrowBackIcon} from '@chakra-ui/icons';
 import {fetchCharacterById} from "../redux";
 import {useAppDispatch, useTypedSelector} from "../utils/hooks/redux-hooks";
+import { PageContainer } from '../components/ui';
 
 
 export const CharactersPage = () => {

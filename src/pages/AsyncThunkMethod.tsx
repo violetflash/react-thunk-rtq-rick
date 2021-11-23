@@ -1,10 +1,12 @@
 import React, {FC} from 'react';
 import {Box, Heading} from "@chakra-ui/react";
-import {AsyncOnScroll, AsyncPagination, PageContainer, TabsLayout} from "../components";
+import {TabsLayout} from "../components";
 import {tabTitles} from "../utils/constants";
+import { PageContainer } from '../components/ui';
+import {AsyncOnScroll, AsyncPagination} from '../components/tabs';
 
 
-export const AsyncThunkMethod: FC = props => {
+export const AsyncThunkMethod: FC = () => {
 
     return (
         <Box>

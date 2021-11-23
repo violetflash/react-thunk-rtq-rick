@@ -1,11 +1,8 @@
 import React, {FC, useEffect} from 'react';
-import {PaginationPage} from "../../components";
-import {useAppDispatch, useTypedSelector} from "../../utils/hooks/redux-hooks";
-import {fetchCharactersPage} from "../../redux";
+import {ContentWithPagination} from "../../../components";
+import {useAppDispatch, useTypedSelector} from "../../../utils/hooks/redux-hooks";
+import {fetchCharactersPage} from "../../../redux";
 import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
-import '../PaginationElement/style.css';
-
-
 
 export const AsyncPagination: FC = () => {
     let [searchParams] = useSearchParams();
@@ -33,7 +30,7 @@ export const AsyncPagination: FC = () => {
     }
 
     return (
-        <PaginationPage
+        <ContentWithPagination
             onChange={onChange}
             items={items}
             info={info}

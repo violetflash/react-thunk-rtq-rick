@@ -13,8 +13,8 @@ const container = {
         opacity: 1,
         transition: {
             ease: "easeOut",
-            delayChildren: 0.3,
-            staggerChildren: 0.2
+            // delayChildren: 0.2,
+            // staggerChildren: 0.1
         }
     }
 };
@@ -33,7 +33,7 @@ export const Cards = ({isLoading, items}: ICards) => {
             flexWrap="wrap"
             ml="-20px"
         >
-            {!isLoading && items && items.map(char => (
+            {items && items.map(char => (
                 <CharacterCard key={char.id} {...char} />
             ))}
             {isLoading && Array.from(Array(8).keys()).map(num => (

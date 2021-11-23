@@ -5,7 +5,6 @@
 .ant-pagination-jump-prev,
 .ant-pagination-jump-next {
   color: inherit !important;
-
 }
 
 .ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-ellipsis,
@@ -15,12 +14,6 @@
 
 .ant-pagination-prev,
 .ant-pagination-next {
-
   background-color: #fff;
-
 }
 
-.ant-pagination-prev button,
-.ant-pagination-next button {
-
-}

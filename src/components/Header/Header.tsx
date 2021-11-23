@@ -1,8 +1,8 @@
 import {Box, Flex} from '@chakra-ui/react';
 import React from 'react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher/ColorModeSwitcher';
-import {PageContainer} from "../PageContainer/PageContainer";
 import {Nav} from "../Nav/Nav";
+import { PageContainer } from '../ui';
 
 export const Header = () => {
     return (

@@ -1,7 +1,7 @@
 import {Badge, Box, Flex, Heading, Link, List, ListItem, Text, VStack} from '@chakra-ui/react';
 import React, {FC} from 'react';
 import { ExternalLinkIcon } from '@chakra-ui/icons'
-import {PageContainer} from "../components";
+import {PageContainer} from "../components/ui";
 import {FieldAndValueRow} from "../components/ui";
 
 export const Main:FC = () => {
@@ -11,7 +11,14 @@ export const Main:FC = () => {
                 <Box className="info-content">
                     <Heading textAlign="center" mt="20px" color="inherit">О проекте</Heading>
                     <VStack alignItems="flex-start" mt="20px">
-
+                        <Flex
+                            alignItems="center"
+                            mb="10px"
+                            direction={["column", "column", "row", "row"]}
+                        >
+                            <Text fontWeight="bold" fontSize="lg" mr="10px">Статус:</Text>
+                            <Badge colorScheme="orange" variant="outline" p="2px 10px">Активный</Badge>
+                        </Flex>
                         <Flex
                             alignItems="center"
                             mb="10px"
@@ -45,17 +52,16 @@ export const Main:FC = () => {
                                 </ListItem>
                             </List>
                         </Flex>
-
                         <Flex
                             alignItems="center"
                             mb="10px"
                             direction={["column", "column", "row", "row"]}
                         >
-                            <Text fontWeight="bold" fontSize="lg" mr="10px">Статус:</Text>
-                            <Badge colorScheme="orange" variant="outline" p="2px 10px">Активный</Badge>
+                            <Text fontWeight="bold" fontSize="lg" mr="10px">GitHub:</Text>
+                            <Link href="https://github.com/violetflash/react-thunk-rtq-rick" p="2px 10px" fontSize="md" isExternal>
+                                Ссылка на репозиторий проекта <ExternalLinkIcon mx="2px" />
+                            </Link>
                         </Flex>
-
-
                     </VStack>
                 </Box>
             </PageContainer>

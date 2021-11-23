@@ -1,7 +1,7 @@
 import React from 'react';
-import {PaginationSkeleton} from "../skeletons";
 import {Center} from "@chakra-ui/react";
 import { Pagination } from 'antd';
+import { PaginationSkeleton } from '../../skeletons';
 import './style.css';
 
 interface IPagePagination {

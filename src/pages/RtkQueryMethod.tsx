@@ -1,9 +1,11 @@
 import React, {FC} from 'react';
 import {Box, Heading} from "@chakra-ui/react";
-import {PageContainer, QueryOnScroll, QueryPagination, TabsLayout} from "../components";
+import {TabsLayout} from "../components";
 import {tabTitles} from "../utils/constants";
+import { PageContainer } from '../components/ui';
+import {QueryOnScroll, QueryPagination} from '../components/tabs';
 
-export const RtkQueryMethod: FC = props => {
+export const RtkQueryMethod: FC = () => {
     return (
         <Box>
             <PageContainer>
