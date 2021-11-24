@@ -21,7 +21,7 @@ export const TabsLayout = ({titles, components}: TabsLayoutProps) => {
     return (
         <Tabs
             index={activeTab}
-            // isLazy
+            isLazy
             onChange={(index) => handleTabChange(index)}
             p="0 0 20px"
         >

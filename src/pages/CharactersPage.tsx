@@ -1,27 +1,25 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {CharacterDescrSkeleton, CharacterFull} from "../components";
 import {Box, Button, Center, Flex, Heading} from "@chakra-ui/react";
 import {ArrowBackIcon} from '@chakra-ui/icons';
-import {fetchCharacterById} from "../redux";
-import {useAppDispatch, useTypedSelector} from "../utils/hooks/redux-hooks";
+
 import { PageContainer } from '../components/ui';
+import {useFetchCharacterByIdQuery} from "../redux/services";
 
 
 export const CharactersPage = () => {
     const navigate = useNavigate();
     const params = useParams();
-    const dispatch = useAppDispatch();
-    const {item, isLoading} = useTypedSelector(state => state.asyncThunk.chosenChar);
+    const id = params.id ? +params.id : 1;
+    const {data, isLoading} = useFetchCharacterByIdQuery(id);
+
+    if (!data) return null;
+
 
     const handleGoBack = () => {
         navigate(-1);
     };
-
-    useEffect(() => {
-        const id = params.id ? +params.id : 1;
-        dispatch(fetchCharacterById(id))
-    }, [dispatch, params.id]);
 
     return (
         <Box className="info-page">
@@ -41,11 +39,11 @@ export const CharactersPage = () => {
                         textAlign="center"
                         color="inherit"
                       >
-                          {item.name}
+                          {data.name}
                       </Heading>
                       <Center>
                           {isLoading && <CharacterDescrSkeleton/>}
-                          {!isLoading && Object.keys(item).length > 0 && <CharacterFull {...item}/>}
+                          {!isLoading && Object.keys(data).length > 0 && <CharacterFull {...data}/>}
                       </Center>
                     </Flex>
                 </Box>

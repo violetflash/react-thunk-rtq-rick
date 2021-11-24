@@ -14,7 +14,7 @@ export const querySlice = createSlice({
     initialState,
     reducers: {
         addNewPage: (state, action: PayloadAction<ICharacter[]>) => {
-            state.items.concat(action.payload);
+            state.items = [...state.items, ...action.payload];
         }
     }
 })

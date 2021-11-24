@@ -1,9 +1,8 @@
 import React, {FC} from 'react';
 import {Box, Heading} from "@chakra-ui/react";
 import {TabsLayout} from "../components";
-import {tabTitles} from "../utils/constants";
 import { PageContainer } from '../components/ui';
-import {QueryOnScroll, QueryPagination} from '../components/tabs';
+import {QueryPagination} from '../components/tabs';
 
 export const RtkQueryMethod: FC = () => {
     return (
@@ -19,7 +18,7 @@ export const RtkQueryMethod: FC = () => {
                     >
                         Загрузка элементов с Redux-toolkit Query
                     </Heading>
-                    <TabsLayout titles={tabTitles} components={[<QueryPagination/>, <QueryOnScroll/>]}/>
+                    <TabsLayout titles={['Пагинация']} components={[<QueryPagination/>]}/>
                 </Box>
             </PageContainer>
         </Box>

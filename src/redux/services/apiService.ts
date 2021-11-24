@@ -16,11 +16,13 @@ export const apiService = createApi({
             })
         }),
         fetchCharacterById: build.query<ICharacter, number>({
-            query: (id) => `/${id}`,
+            query: (id) => ({
+                url: `/character/${id}`
+            })
         }),
     }),
 })
 
 
-export const {useFetchCharactersPageQuery, useLazyFetchCharacterByIdQuery} = apiService;
+export const {useFetchCharactersPageQuery, useFetchCharacterByIdQuery} = apiService;
 // export const {useGetCharactersPageQuery} = apiService;
