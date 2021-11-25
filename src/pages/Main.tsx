@@ -17,7 +17,7 @@ export const Main:FC = () => {
                             direction={["column", "column", "row", "row"]}
                         >
                             <Text fontWeight="bold" fontSize="lg" mr="10px">Статус:</Text>
-                            <Badge colorScheme="orange" variant="outline" p="2px 10px">Активный</Badge>
+                            <Badge colorScheme="green" variant="outline" p="2px 10px">Завершен</Badge>
                         </Flex>
                         <Flex
                             alignItems="center"
